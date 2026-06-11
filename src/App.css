@@ -92,3 +92,78 @@ article p {
     margin-right: 0;
   }
 }
+.button-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+main p {
+  font-size: 16px;
+  color: #6b7280;
+}
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.role-badge {
+  display: inline-block;
+  background: #e0ecff;
+  color: #1d4ed8;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.danger-btn {
+  background: #dc2626;
+}
+
+.danger-btn:hover {
+  background: #b91c1c;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.stat-card {
+  background: #eff6ff;
+  border-radius: 14px;
+  padding: 20px;
+  border: 1px solid #bfdbfe;
+}
+
+.stat-card h3 {
+  color: #1e3a8a;
+}
+
+.stat-card p {
+  font-size: 32px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.task-grid {
+  display: grid;
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}

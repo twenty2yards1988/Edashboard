@@ -13,27 +13,49 @@ export default function DashboardPage() {
     navigate("/login");
   }
 
+  const completedTasks = tasks.filter((task) => task.status === "Completed").length;
+  const inProgressTasks = tasks.filter((task) => task.status === "In Progress").length;
+
   return (
     <main aria-labelledby="dashboard-title">
-      <h1 id="dashboard-title">Dashboard</h1>
+      <div className="dashboard-header">
+        <div>
+          <h1 id="dashboard-title">Task Dashboard</h1>
+          <p>Welcome back, {user?.name}</p>
+          <span className="role-badge">{user?.role}</span>
+        </div>
 
-      <p>Welcome, {user?.name}</p>
-      <p>Your role: {user?.role}</p>
+        <div>
+          <button onClick={() => navigate("/admin")}>Admin Page</button>
+          <button className="danger-btn" onClick={handleLogout}>Logout</button>
+        </div>
+      </div>
 
-      <button aria-label="Go to admin page" onClick={() => navigate("/admin")}>
-        Go to Admin Page
-      </button>
+      <section className="stats-grid">
+        <div className="stat-card">
+          <h3>Total Tasks</h3>
+          <p>{tasks.length}</p>
+        </div>
 
-      <button aria-label="Logout current user" onClick={handleLogout}>
-        Logout
-      </button>
+        <div className="stat-card">
+          <h3>Completed</h3>
+          <p>{completedTasks}</p>
+        </div>
+
+        <div className="stat-card">
+          <h3>In Progress</h3>
+          <p>{inProgressTasks}</p>
+        </div>
+      </section>
 
       <section aria-label="Task list">
-        <h2>Tasks</h2>
+        <h2>Recent Tasks</h2>
 
-        {tasks.map((task) => (
-          <TaskCard key={task.id} task={task} />
-        ))}
+        <div className="task-grid">
+          {tasks.map((task) => (
+            <TaskCard key={task.id} task={task} />
+          ))}
+        </div>
       </section>
     </main>
   );

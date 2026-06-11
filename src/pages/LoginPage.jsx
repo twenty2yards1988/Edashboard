@@ -12,20 +12,26 @@ export default function LoginPage() {
   }
 
   return (
-    <main aria-labelledby="login-title">
-      <h1 id="login-title">Login Page</h1>
+    <main>
+      <h1>Task Management Dashboard</h1>
 
-      <button aria-label="Login as admin" onClick={() => handleLogin(ROLES.ADMIN)}>
-        Login as Admin
-      </button>
+      <p>
+        Secure role-based access system with Admin, Manager and Employee roles.
+      </p>
 
-      <button aria-label="Login as manager" onClick={() => handleLogin(ROLES.MANAGER)}>
-        Login as Manager
-      </button>
+      <div className="button-group">
+        <button onClick={() => handleLogin(ROLES.ADMIN)}>
+          Login as Admin
+        </button>
 
-      <button aria-label="Login as employee" onClick={() => handleLogin(ROLES.EMPLOYEE)}>
-        Login as Employee
-      </button>
+        <button onClick={() => handleLogin(ROLES.MANAGER)}>
+          Login as Manager
+        </button>
+
+        <button onClick={() => handleLogin(ROLES.EMPLOYEE)}>
+          Login as Employee
+        </button>
+      </div>
     </main>
   );
 }
