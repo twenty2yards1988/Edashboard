@@ -1,17 +1,23 @@
-import React from 'react'
-import Sidebar from '../components/Sidebar'
-import TaskCard from '../components/TaskCard'
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
-const DashboardPage = () => {
+export default function DashboardPage() {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    logout();
+    navigate("/login");
+  }
+
   return (
-    <div className="page dashboard-page">
-      <Sidebar />
-      <section className="dashboard-content">
-        <h1>Dashboard</h1>
-        <TaskCard title="Review Metrics" description="Analyze dashboard analytics." status="Active" />
-      </section>
-    </div>
-  )
-}
+    <main>
+      <h1>Dashboard</h1>
+      <p>Welcome, {user?.name}</p>
+      <p>Your role: {user?.role}</p>
 
-export default DashboardPage
+      <button onClick={() => navigate("/admin")}>Go to Admin Page</button>
+      <button onClick={handleLogout}>Logout</button>
+    </main>
+  );
+}

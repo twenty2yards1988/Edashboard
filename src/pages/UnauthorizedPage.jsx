@@ -1,12 +1,16 @@
-import React from 'react'
+import { useNavigate } from "react-router-dom";
 
-const UnauthorizedPage = () => {
+export default function UnauthorizedPage() {
+  const navigate = useNavigate();
+
   return (
-    <main className="page unauthorized-page">
-      <h1>Unauthorized</h1>
-      <p>You do not have permission to view this page.</p>
-    </main>
-  )
-}
+    <main>
+      <h1>403 - Unauthorized</h1>
+      <p>You do not have permission to access this page.</p>
 
-export default UnauthorizedPage
+      <button onClick={() => navigate("/dashboard")}>
+        Back to Dashboard
+      </button>
+    </main>
+  );
+}

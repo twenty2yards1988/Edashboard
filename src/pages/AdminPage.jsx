@@ -1,14 +1,16 @@
-import React from 'react'
-import RoleBadge from '../components/RoleBadge'
+import { useNavigate } from "react-router-dom";
 
-const AdminPage = () => {
+export default function AdminPage() {
+  const navigate = useNavigate();
+
   return (
-    <main className="page admin-page">
-      <h1>Admin</h1>
-      <p>Manage system settings and user roles.</p>
-      <RoleBadge role="Admin" />
-    </main>
-  )
-}
+    <main>
+      <h1>Admin Page</h1>
+      <p>Only admin users can see this page.</p>
 
-export default AdminPage
+      <button onClick={() => navigate("/dashboard")}>
+        Back to Dashboard
+      </button>
+    </main>
+  );
+}
