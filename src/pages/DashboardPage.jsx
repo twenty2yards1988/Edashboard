@@ -11,13 +11,19 @@ export default function DashboardPage() {
   }
 
   return (
-    <main>
-      <h1>Dashboard</h1>
+    <main aria-labelledby="dashboard-title">
+      <h1 id="dashboard-title">Dashboard</h1>
+
       <p>Welcome, {user?.name}</p>
       <p>Your role: {user?.role}</p>
 
-      <button onClick={() => navigate("/admin")}>Go to Admin Page</button>
-      <button onClick={handleLogout}>Logout</button>
+      <button aria-label="Go to admin page" onClick={() => navigate("/admin")}>
+        Go to Admin Page
+      </button>
+
+      <button aria-label="Logout current user" onClick={handleLogout}>
+        Logout
+      </button>
     </main>
   );
 }
