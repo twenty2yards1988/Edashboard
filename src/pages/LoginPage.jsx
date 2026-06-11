@@ -1,36 +1,73 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-import { ROLES } from "../utils/constants";
 
 export default function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  function handleLogin(role) {
-    login(role);
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+
+  const [error, setError] = useState("");
+
+  function handleChange(event) {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const result = login(formData.username, formData.password);
+
+    if (!result.success) {
+      setError(result.message);
+      return;
+    }
+
     navigate("/dashboard");
   }
 
   return (
-    <main>
+    <main className="login-container">
       <h1>Task Management Dashboard</h1>
+      <p>Login using your username and password.</p>
 
-      <p>
-        Secure role-based access system with Admin, Manager and Employee roles.
-      </p>
+      <form onSubmit={handleSubmit} className="login-form">
+        <label htmlFor="username">Username</label>
+        <input
+          id="username"
+          name="username"
+          type="text"
+          placeholder="Enter username"
+          value={formData.username}
+          onChange={handleChange}
+        />
 
-      <div className="button-group">
-        <button onClick={() => handleLogin(ROLES.ADMIN)}>
-          Login as Admin
-        </button>
+        <label htmlFor="password">Password</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          placeholder="Enter password"
+          value={formData.password}
+          onChange={handleChange}
+        />
 
-        <button onClick={() => handleLogin(ROLES.MANAGER)}>
-          Login as Manager
-        </button>
+        {error && <p className="error-text">{error}</p>}
 
-        <button onClick={() => handleLogin(ROLES.EMPLOYEE)}>
-          Login as Employee
-        </button>
+        <button type="submit">Login</button>
+      </form>
+
+      <div className="demo-box">
+        <p><strong>Demo:</strong> admin / admin123</p>
+        <p>manager / manager123</p>
+        <p>employee / employee123</p>
       </div>
     </main>
   );
