@@ -1,10 +1,10 @@
 export const ROLES = {
-  ADMIN: 'Admin',
-  USER: 'User',
-}
+  ADMIN: "admin",
+  MANAGER: "manager",
+  EMPLOYEE: "employee",
+};
 
-export const STATUS = {
-  ACTIVE: 'Active',
-  PENDING: 'Pending',
-  COMPLETED: 'Completed',
-}
+export const STORAGE_KEYS = {
+  USER: "user",
+  TOKEN: "token",
+};

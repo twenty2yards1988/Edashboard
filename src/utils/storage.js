@@ -1,12 +1,18 @@
-export const saveToStorage = (key, value) => {
-  localStorage.setItem(key, JSON.stringify(value))
-}
+export const storage = {
+  set(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+  },
 
-export const loadFromStorage = (key) => {
-  const stored = localStorage.getItem(key)
-  return stored ? JSON.parse(stored) : null
-}
+  get(key) {
+    const value = localStorage.getItem(key);
+    return value ? JSON.parse(value) : null;
+  },
 
-export const removeFromStorage = (key) => {
-  localStorage.removeItem(key)
-}
+  remove(key) {
+    localStorage.removeItem(key);
+  },
+
+  clear() {
+    localStorage.clear();
+  },
+};
