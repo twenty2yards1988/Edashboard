@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { useTasks } from "../hooks/useTasks";
+import TaskCard from "../components/TaskCard";
 
 export default function DashboardPage() {
   const { user, logout } = useAuth();
+  const { tasks } = useTasks();
   const navigate = useNavigate();
 
   function handleLogout() {
@@ -24,6 +27,14 @@ export default function DashboardPage() {
       <button aria-label="Logout current user" onClick={handleLogout}>
         Logout
       </button>
+
+      <section aria-label="Task list">
+        <h2>Tasks</h2>
+
+        {tasks.map((task) => (
+          <TaskCard key={task.id} task={task} />
+        ))}
+      </section>
     </main>
   );
 }

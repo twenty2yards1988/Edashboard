@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 
-const TaskCard = ({ title, description, status }) => {
+function TaskCard({ task }) {
   return (
-    <div className="task-card">
-      <h3>{title}</h3>
-      <p>{description}</p>
-      <span className="task-card__status">{status}</span>
-    </div>
-  )
+    <article aria-label={`Task ${task.title}`}>
+      <h3>{task.title}</h3>
+      <p>Status: {task.status}</p>
+      <p>Priority: {task.priority}</p>
+    </article>
+  );
 }
 
-export default TaskCard
+export default React.memo(TaskCard);
